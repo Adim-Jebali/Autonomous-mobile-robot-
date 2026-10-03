@@ -214,6 +214,10 @@ The robot can perform **vision-based green line following** using its onboard ca
 
 The perception pipeline detects the green path on the ground and generates motion commands allowing the Mecanum robot to follow the detected trajectory.
 
+
+https://github.com/user-attachments/assets/35271f2d-414e-43e3-ad6a-444b0617a3a7
+
+
 ### Processing pipeline
 
 ```text
