@@ -126,14 +126,26 @@ echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
 
 ## Usage
 
-| Goal | Command |
-| ---- | ------- |
-| Full simulation (default warehouse world) | `ros2 launch mecanum_bringup sim_bringup.launch.py` |
-| Minimal environment | `ros2 launch mecanum_bringup sim_bringup.launch.py world:=minimal` |
-| Empty environment | `ros2 launch mecanum_bringup sim_bringup.launch.py world:=empty` |
-| Simulation with navigation | `ros2 launch mecanum_bringup sim_bringup.launch.py launch_navigation:=true` |
+Starting the simulation
+# Warehouse world + robot + lift (default)
+ros2 launch mecanum_bringup sim_bringup.launch.py
 
----
+# With Nav2 + SLAM enabled
+ros2 launch mecanum_bringup sim_bringup.launch.py launch_navigation:=true
+
+# Minimal or empty world
+ros2 launch mecanum_bringup sim_bringup.launch.py world:=minimal
+
+# Robot model only (RViz)
+ros2 launch mecanum_description display.launch.py
+
+# Navigation only (SLAM mode)
+ros2 launch mecanum_navigation navigation.launch.py slam_mode:=true
+Worlds: Default is warehouse (shelves + QR stations). Alternatives: world:=minimal, world:=empty.
+
+Task manager (QR + Nav2): Add launch_task_manager:=true. Requires ros-humble-nav2-bringup and ros-humble-nav2-msgs.
+
+<img width="1421" height="891" alt="general_map" src="https://github.com/user-attachments/assets/78c255de-9891-4b03-bad4-d5c3704b400d" />
 
 ## Green Line Following
 
