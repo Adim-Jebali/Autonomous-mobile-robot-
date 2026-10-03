@@ -10,7 +10,6 @@
   <img src="https://img.shields.io/badge/Ubuntu-22.04-E95420?logo=ubuntu&logoColor=white" alt="Ubuntu 22.04">
   <img src="https://img.shields.io/badge/Simulation-Gazebo-FF6F00" alt="Gazebo">
   <img src="https://img.shields.io/badge/Navigation-Nav2-0A7BBB" alt="Nav2">
-  
 </p>
 
 ---
@@ -19,19 +18,17 @@
 
 1. [Overview](#overview)
 2. [Key Features](#key-features)
-3. [Demo](#demo)
-4. [Package Layout](#package-layout)
-5. [System Requirements](#system-requirements)
-6. [Installation](#installation)
-7. [Usage](#usage)
-8. [Green Line Following](#green-line-following)
-9. [SLAM Mapping](#slam-mapping)
-10. [System Architecture](#system-architecture)
-11. [ROS 2 Topics](#ros-2-topics)
-12. [Project Structure](#project-structure)
-13. [Roadmap](#roadmap)
-14. [Credits and License](#credits-and-license)
-15. [Author](#author)
+3. [Package Layout](#package-layout)
+4. [System Requirements](#system-requirements)
+5. [Installation](#installation)
+6. [Usage](#usage)
+7. [Green Line Following](#green-line-following)
+8. [SLAM Mapping](#slam-mapping)
+9. [System Architecture](#system-architecture)
+10. [Topics](#topics)
+11. [Project Structure](#project-structure)
+12. [Roadmap](#roadmap)
+13. [Author](#author)
 
 ---
 
@@ -61,23 +58,6 @@ The Mecanum drive provides **omnidirectional mobility**: the robot can move forw
 | **Simulation** | Gazebo environments (warehouse, minimal, empty), RViz 2 visualization, TF and robot state management |
 | **Perception** | LiDAR environment sensing, camera-based perception, green line detection |
 | **Navigation** | SLAM mapping, localization, Nav2 autonomous navigation, velocity command generation, goal execution |
-
----
-
-## Demo
-
-<table>
-  <tr>
-    <td align="center" width="50%">
-      <img src="https://github.com/user-attachments/assets/4cd3e89a-0edc-4156-91e0-c0ddeaf1143e" alt="SLAM mapping in the warehouse" width="426"><br>
-      <sub><b>SLAM mapping</b> in the warehouse world</sub>
-    </td>
-    <td align="center" width="50%">
-      <img src="https://github.com/user-attachments/assets/c32f9565-642e-4c64-b3fd-41212d267bd6" alt="Generated occupancy grid map" width="421"><br>
-      <sub><b>Occupancy grid</b> generated from LiDAR data</sub>
-    </td>
-  </tr>
-</table>
 
 ---
 
@@ -188,6 +168,19 @@ ros2 run mecanum_control green_lane_detector.py --follow
 
 The robot uses LiDAR data to build a map of the environment with **SLAM (Simultaneous Localization and Mapping)**.
 
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="https://github.com/user-attachments/assets/4cd3e89a-0edc-4156-91e0-c0ddeaf1143e" alt="SLAM mapping in the warehouse" width="426"><br>
+      <sub><b>SLAM mapping</b> in the warehouse world</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="https://github.com/user-attachments/assets/c32f9565-642e-4c64-b3fd-41212d267bd6" alt="Generated occupancy grid map" width="421"><br>
+      <sub><b>Occupancy grid</b> generated from LiDAR data</sub>
+    </td>
+  </tr>
+</table>
+
 **1. Launch the simulation with SLAM**
 
 ```bash
@@ -220,24 +213,22 @@ Simulation, perception, control, navigation and task management are separated in
 
 ---
 
-## ROS 2 Topics
+## Topics
 
-| Topic | Message type | Purpose |
-| ----- | ------------ | ------- |
-| `/cmd_vel` | `geometry_msgs/msg/Twist` | Robot velocity commands |
-| `/odom` | `nav_msgs/msg/Odometry` | Robot odometry |
-| `/scan` | `sensor_msgs/msg/LaserScan` | LiDAR measurements |
-| `/map` | `nav_msgs/msg/OccupancyGrid` | Generated occupancy map |
-| `/camera/image_raw` | `sensor_msgs/msg/Image` | Camera images |
-| `/tf`, `/tf_static` | `tf2_msgs/msg/TFMessage` | Coordinate transformations |
+| Topic | Message type | Direction | Description |
+| ----- | ------------ | --------- | ----------- |
+| `/scan` | `sensor_msgs/msg/LaserScan` | Published | LiDAR distance data |
+| `/cmd_vel` | `geometry_msgs/msg/Twist` | Subscribed | Linear and angular velocity commands |
+| `/odom` | `nav_msgs/msg/Odometry` | Published | Wheel odometry |
+| `/map` | `nav_msgs/msg/OccupancyGrid` | Published | SLAM-generated occupancy map |
+| `/qr/data` | `std_msgs/msg/String` | Published | Raw QR code payload |
+| `/qr/goal_pose` | `geometry_msgs/msg/PoseStamped` | Published | Navigation goal parsed from QR |
+| `/robot_state` | `std_msgs/msg/String` | Published | Current state machine state |
+| `/lift/up` | `std_msgs/msg/Empty` | Subscribed | Trigger lift up |
+| `/lift/down` | `std_msgs/msg/Empty` | Subscribed | Trigger lift down |
+| `/camera/image_raw` | `sensor_msgs/msg/Image` | Published | Raw camera feed |
 
-**Useful inspection commands**
-
-```bash
-ros2 topic list            # list active topics
-ros2 topic echo /cmd_vel   # print messages on a topic
-ros2 topic info /scan      # type and publisher/subscriber count
-```
+**QR payload format:** `x:<float>;y:<float>;yaw:<float>` — e.g. `x:3.5;y:1.2;yaw:1.57`
 
 ---
 
@@ -269,16 +260,6 @@ Autonomous-mobile-robot-/
 - [ ] Multi-robot coordination
 - [ ] Reinforcement learning
 - [ ] Deployment on a physical AMR platform
-
----
-
-## Credits and License
-
-This project is based on the open-source work
-[Trkkhrmn/ros2_amr_mecanumbot](https://github.com/Trkkhrmn/ros2_amr_mecanumbot)
-(MIT License), which provided the original Mecanum AMR stack. Adaptations, documentation and further development are by the author below.
-
-Released under the [MIT License](LICENSE).
 
 ---
 
