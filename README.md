@@ -263,27 +263,10 @@ Mecanum Drive
 
 The robot uses LiDAR data to construct a representation of the simulated environment using **SLAM (Simultaneous Localization and Mapping)**.
 
-### SLAM pipeline
 
-```text
-LiDAR
-  │
-  ▼
-LaserScan
-  │
-  ▼
-SLAM
-  │
-  ├── Robot Pose
-  │
-  └── Occupancy Grid Map
-             │
-             ▼
-          Map Server
-             │
-             ▼
-            Nav2
-```
+<img width="421" height="418" alt="warehouse_map" src="https://github.com/user-attachments/assets/c32f9565-642e-4c64-b3fd-41212d267bd6" />
+
+
 
 ### Launch the simulation
 
