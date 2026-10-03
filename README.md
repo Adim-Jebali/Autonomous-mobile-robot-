@@ -266,6 +266,11 @@ The robot uses LiDAR data to construct a representation of the simulated environ
 
 <img width="421" height="418" alt="warehouse_map" src="https://github.com/user-attachments/assets/c32f9565-642e-4c64-b3fd-41212d267bd6" />
 
+<img width="426" height="240" alt="mapping-ezgif com-optimize" src="https://github.com/user-attachments/assets/4cd3e89a-0edc-4156-91e0-c0ddeaf1143e" />
+
+
+
+
 
 
 ### Launch the simulation
