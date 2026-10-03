@@ -269,9 +269,7 @@ Autonomous-mobile-robot-/
 - [ ] Behavior Tree mission orchestration
 - [ ] Advanced task planning
 - [ ] Mobile manipulation
-- [ ] Multi-robot coordination
-- [ ] Reinforcement learning
-- [ ] Deployment on a physical AMR platform
+
 
 ---
 
