@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/Ubuntu-22.04-E95420?logo=ubuntu&logoColor=white" alt="Ubuntu 22.04">
   <img src="https://img.shields.io/badge/Simulation-Gazebo-FF6F00" alt="Gazebo">
   <img src="https://img.shields.io/badge/Navigation-Nav2-0A7BBB" alt="Nav2">
-  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
+  
 </p>
 
 ---
