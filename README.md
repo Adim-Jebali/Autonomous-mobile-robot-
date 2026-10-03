@@ -314,58 +314,9 @@ The resulting map can then be used for autonomous navigation.
 # 🏗️ Architecture
 
 The system follows a modular ROS 2 architecture in which simulation, perception, control, navigation, and task management are separated into independent components.
+<img width="2536" height="1494" alt="ros2_architecture" src="https://github.com/user-attachments/assets/d495ee6f-db8a-4dd7-b5f0-43dcd8a8f15a" />
 
-```text
-                         ┌──────────────────────┐
-                         │      Gazebo          │
-                         │  Simulation World    │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │   Mecanum AMR        │
-                         │                      │
-                         │  LiDAR + Camera      │
-                         └──────────┬───────────┘
-                                    │
-                    ┌───────────────┴───────────────┐
-                    │                               │
-                    ▼                               ▼
-             ┌──────────────┐              ┌──────────────┐
-             │    LiDAR     │              │    Camera    │
-             │  Perception  │              │  Perception  │
-             └──────┬───────┘              └──────┬───────┘
-                    │                               │
-                    ▼                               ▼
-             ┌──────────────┐              ┌──────────────┐
-             │     SLAM     │              │ Green Line   │
-             │   Mapping    │              │  Detection   │
-             └──────┬───────┘              └──────┬───────┘
-                    │                               │
-                    └───────────────┬───────────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │  Navigation / Nav2  │
-                         │                      │
-                         │ Localization         │
-                         │ Planning             │
-                         │ Control              │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │   Motion Control     │
-                         │      /cmd_vel        │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │   Mecanum Wheels     │
-                         └──────────────────────┘
-```
 
----
 
 # 📡 ROS 2 Topics
 
@@ -465,18 +416,6 @@ The architecture is designed to support future extensions such as:
 * Multi-robot coordination
 * Reinforcement Learning
 * Deployment on a physical AMR platform
-
----
-
-# 📚 Credits
-
-This project is based on and adapted from the original **ros2_amr_mecanumbot** project by Trkkhrmn.
-
-Original repository:
-
-https://github.com/Trkkhrmn/ros2_amr_mecanumbot
-
-The original project's license and attribution requirements apply to the reused components.
 
 ---
 
